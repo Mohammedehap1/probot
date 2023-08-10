@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import random
 import os
+import time
 class data_function:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
