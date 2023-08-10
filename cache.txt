@@ -1,0 +1,18 @@
+ 
+    '''
+    def captcha_solver(self,*args):
+      iframes = self.driver.find_elements_by_tag_name('iframe')
+      for index in range(len(iframes)):
+        self.driver.switch_to.default_content()
+        iframe= self.driver.find_elements_by_tag_name('iframe')[index]
+        self.driver.switch_to.frame(iframe)
+        self.driver.implicitly_wait(random.randint(2, 3))
+        try:
+          audioBtn = self.driver.find_element_by_id("recaptcha-audio-button")
+          audioBtn.click()
+          audioBtnFound = True
+          audioBtnIndex = index
+          break
+        except Exception as e:
+          pass
+        '''

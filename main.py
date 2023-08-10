@@ -1,3 +1,4 @@
+from attr import s
 from selenium import webdriver
 import undetected_chromedriver as uc
 from fake_useragent import UserAgent as ua 
@@ -35,9 +36,9 @@ class data_function:
     
     
 class Browser:
-    tokens = []
+    tokens = ['lol']
     token_path = 'token.txt'
-    driver_path = os.getcwd() + "\\chromedriver.exe"
+    driver_path = 'chromedriver.exe'
     user_data = r"C:\Users\Admin\AppData\Local\Google\Chrome\User Data"
     sshome_page = None 
     def __init__(self, *args, **kwargs):
@@ -48,7 +49,7 @@ class Browser:
         self.options = webdriver.ChromeOptions()
         self.options.add_argument(f'user-agent={self.user_agent}')
         self.options.add_argument(f'user-data-dir={self.user_data}')
-        self.driver = uc.Chrome(executable_path=self.driver_path, options=self.options)
+        self.driver = uc.Chrome( options=self.options)
     def get_tokens(self,token_path,*args):
         token_file = open(token_path,'r')
         tokens = token_file.readlines()
@@ -79,21 +80,9 @@ class Browser:
           self.driver.switch_to.window(handle)
     def check_cf(self,*args):
       pass
+    def start(self, *args):
+      print(self.driver_path)
+      self.driver.get("http://www.example.com/")
+      input()
 
-    '''
-    def captcha_solver(self,*args):
-      iframes = self.driver.find_elements_by_tag_name('iframe')
-      for index in range(len(iframes)):
-        self.driver.switch_to.default_content()
-        iframe= self.driver.find_elements_by_tag_name('iframe')[index]
-        self.driver.switch_to.frame(iframe)
-        self.driver.implicitly_wait(random.randint(2, 3))
-        try:
-          audioBtn = self.driver.find_element_by_id("recaptcha-audio-button")
-          audioBtn.click()
-          audioBtnFound = True
-          audioBtnIndex = index
-          break
-        except Exception as e:
-          pass
-        '''
+Browser().start()
